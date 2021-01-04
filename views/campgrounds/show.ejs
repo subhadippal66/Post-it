@@ -1,0 +1,68 @@
+<% layout('/layout/boilerplate') %>
+
+<div class="row">
+
+<div class="col-12 col-md-8">
+<div class="card mb-5" style="border-radius: 20px; background-color: beige;">
+  <img src="<%= campgrounds.image %> " style="border-radius: 20px;" class="card-img-top " alt="...">
+  <div class="card-body">
+    <h1 class="card-title list-group-item" style="border-radius: 10px;"><%= campgrounds.title %></h1>
+    <h2 class="card-title list-group-item" style="border-radius: 10px;"><%= campgrounds.location %> </h2><br>
+    <h4 class="card-title list-group-item" style="border-radius: 10px;">Rs - <%= campgrounds.price %>/- </h2>
+    <p class="card-text list-group-item" style="border-radius: 10px;"><%= campgrounds.description %> </p>
+  </div>
+  <div class="card-body">
+    <a class="btn btn-info" href="/campgrounds/<%= campgrounds._id %>/edit ">Edit</a>
+    <form class="d-inline" action="/campgrounds/<%= campgrounds._id %>?_method=DELETE " method="post">
+      <button class="btn btn-outline-danger">Delete</button>
+    </form>
+ </div>
+</div>
+
+</div>
+
+
+<div class="col-md-4 col-12" >
+<div class="card mb-3" style="border-radius: 20px; background-color: beige;">
+  <div class="card-body">
+    <h2 class="card-title list-group-item" style="border-radius: 10px;">Leave a review</h2>
+    <form class="needs-validation" action="/campgrounds/<%= campgrounds._id %>/review" method="post" novalidate>
+        <label for="customRange2" class="form-label">Rating</label>
+        <input type="range" name="rating" class="form-range" min="0" max="5" id="customRange2">
+        <div class="input-group my-3">
+            <span class="input-group-text">Details</span>
+            <textarea name="body" class="form-control" aria-label="With textarea" required></textarea>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+            <div class="invalid-feedback">
+              Please give some details.
+            </div>
+        </div>
+      <button class="btn btn-info my-3">Submit</button>
+    </form>
+    
+
+    <% if(campgrounds.reviews.length>0){ %>
+      <h3 class="card list-group-item" style="border-radius: 10px;">All Reviews</h3>
+      <% } %> 
+
+    <% for(review of campgrounds.reviews){ %>
+      <div class="card my-3" style="border-radius: 10px;">
+      <div class="card-body" style="border-radius: 10px;"> <b><%= review.rating %>&#9733 </b>   </div>
+      <p class="mx-3" style="border-radius: 10px;"><%= review.body %></p>
+      <form action="/campgrounds/<%=campgrounds._id%>/review/<%=review._id%>?_method=DELETE" method="POST">
+          <button class="btn btn-outline-danger btn-sm mx-1 mb-1"> Delete</button>
+      </form>
+    </div>
+      <% } %> 
+    
+  </div>
+</div>
+
+</div>
+
+</div>
+
+<script src="/formValidation.js"></script>
+

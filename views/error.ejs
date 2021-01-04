@@ -1,0 +1,8 @@
+<% layout('/layout/boilerplate') %> 
+<div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading"> Error <%= err.statusCode %> </h4>
+    <h5><%= err.message %> </h5>
+    <p><%= err.stack %> </p>
+    <hr>
+    <h5 class="mb-0">You are lost, Maybe <a href="/campgrounds">Go Home</a></h5>
+  </div>

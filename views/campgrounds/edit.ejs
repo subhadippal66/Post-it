@@ -1,0 +1,55 @@
+<% layout('/layout/boilerplate') %>
+    <h1 class="text-center" style="color: beige;">Edit campground</h1>
+    <h2 class="text-center" style="color: beige;"><%= campgrounds.title %> </h2>
+    <div class="col-md-6 mx-auto">
+    <form action="/campgrounds/<%= campgrounds._id %>?_method=PUT " method="POST" class="needs-validation" novalidate>
+        <div>
+            <label class="form-label" for="title" style="color: beige;">Title</label>
+            <input class="form-control" type="text" id="title" name="campground[title]" value="<%= campgrounds.title %> " required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Please enter a Name.
+              </div>
+        </div>
+        <div>
+            <label class="form-label" for="loc" style="color: beige;">Location</label>
+            <input class="form-control" type="text" id="loc" name="campground[location]" value="<%= campgrounds.location %> " required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Please enter a Location.
+              </div>
+        </div>
+        <div class="input-group my-1">
+            <span class="input-group-text">₹</span>
+            <input type="text" name="campground[price]" class="form-control" aria-label="Amount (to the nearest dollar)" value="<%= campgrounds.price %>" required>
+            <span class="input-group-text">.00</span>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Please enter a Price.
+              </div>
+        </div>
+        <div>
+            <label class="form-label" for="url" style="color: beige;">Image URL</label>
+            <input class="form-control" type="text" id="url" name="campground[image]" value="<%= campgrounds.image %> " required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Please enter a Image URL.
+              </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label" style="color: beige;">Description</label>
+            <textarea name="campground[description]" class="form-control" id="exampleFormControlTextarea1" rows="3"><%= campgrounds.description %></textarea>
+        </div>
+        <button class="btn btn-success my-3">Edit Campground</button>
+    </form>
+    </div>
+
+    <script src="/formValidation.js"></script>
