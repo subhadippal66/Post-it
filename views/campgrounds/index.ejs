@@ -1,20 +1,20 @@
 <% layout('/layout/boilerplate') %> 
 
-<h1 class="text-center" style="color: beige;">All Campgrounds</h1>
+<h1 class="text-center" style="color: white;">All Campgrounds</h1>
 
     
     
     <% for(const camp of campgrounds){ %>
-        <div class="card my-3" style="border-radius: 15px; background-color: beige;">
+        <div class="card my-3" style="border-radius: 15px; background-color:#26273b;">
             <div class="row">
                 <div class="col-md-4">
                     <img class="card-img" style="border-radius: 15px; min-height: 20rem;" src="<%= camp.image %> " alt="">
                 </div>
                 <div class="col-md-8">
-                    <h3 class="p-3"><%= camp.title %> </h2>
-                    <h4 class="px-3"><%= camp.location %> </h3>
-                    <h5 class="px-3">RS - <%= camp.price %> /-</h5>
-                    <p class="px-3"><%= camp.description %> </p>
+                    <h3 class="p-3" style="color: white;"><%= camp.title %> </h2>
+                    <h4 class="px-3" style="color: white;"><%= camp.location %> </h3>
+                    <h5 class="px-3" style="color: white;">RS - <%= camp.price %> /-</h5>
+                    <p class="px-3" style="color: white;"><%= camp.description %> </p>
                     <a class="btn btn-info mx-3 mb-3" href="/campgrounds/<%= camp._id %> ">Details</a>
                 </div>
             </div>

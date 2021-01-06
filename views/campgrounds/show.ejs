@@ -3,31 +3,40 @@
 <div class="row">
 
 <div class="col-12 col-md-8">
-<div class="card mb-5" style="border-radius: 20px; background-color: beige;">
+<div class="card mb-5" style="border-radius: 20px; background-color: #26273b;">
   <img src="<%= campgrounds.image %> " style="border-radius: 20px;" class="card-img-top " alt="...">
   <div class="card-body">
-    <h1 class="card-title list-group-item" style="border-radius: 10px;"><%= campgrounds.title %></h1>
-    <h2 class="card-title list-group-item" style="border-radius: 10px;"><%= campgrounds.location %> </h2><br>
-    <h4 class="card-title list-group-item" style="border-radius: 10px;">Rs - <%= campgrounds.price %>/- </h2>
-    <p class="card-text list-group-item" style="border-radius: 10px;"><%= campgrounds.description %> </p>
-  </div>
+    <h1 class="card-title" style="color: white;"><%= campgrounds.title %></h1>
+    <h2 class="card-title" style="color: white;"><%= campgrounds.location %> </h2><br>
+    <h4 class="card-title" style="color: white;">Rs - <%= campgrounds.price %>/- </h2>
+    <p class="card-text" style="color: white;"><%= campgrounds.description %> </p>
+    
+    <span> 
+      <h5 style="color: white; ">Blog By-</h4>
+      <h5 style="color: tan;"><%= campgrounds.author.username %></h5> 
+      <h6 class="text-muted" style="color: tan;"><%= campgrounds.author.email %></h6>
+    </span>
+  </div> 
+  <% if(user && user._id.equals(campgrounds.author._id)) {%> 
   <div class="card-body">
     <a class="btn btn-info" href="/campgrounds/<%= campgrounds._id %>/edit ">Edit</a>
     <form class="d-inline" action="/campgrounds/<%= campgrounds._id %>?_method=DELETE " method="post">
       <button class="btn btn-outline-danger">Delete</button>
     </form>
- </div>
-</div>
+  </div>
+<% } %> 
 
 </div>
 
+</div>
 
 <div class="col-md-4 col-12" >
-<div class="card mb-3" style="border-radius: 20px; background-color: beige;">
+<div class="card mb-3" style="border-radius: 20px; background-color: #26273b;">
   <div class="card-body">
-    <h2 class="card-title list-group-item" style="border-radius: 10px;">Leave a review</h2>
+    <h2 class="card-title" style="color: white;">Leave a review</h2>
+    <% if(user) {%> 
     <form class="needs-validation" action="/campgrounds/<%= campgrounds._id %>/review" method="post" novalidate>
-        <label for="customRange2" class="form-label">Rating</label>
+        <label for="customRange2" class="form-label" style="color: white;">Rating</label>
         <input type="range" name="rating" class="form-range" min="0" max="5" id="customRange2">
         <div class="input-group my-3">
             <span class="input-group-text">Details</span>
@@ -41,19 +50,24 @@
         </div>
       <button class="btn btn-info my-3">Submit</button>
     </form>
-    
+    <% }else{ %>
+        <h6 style="color: wheat;">You must <a href="/login">Log-In</a> to submit a Review</h6>
+      <% } %> 
 
     <% if(campgrounds.reviews.length>0){ %>
-      <h3 class="card list-group-item" style="border-radius: 10px;">All Reviews</h3>
+      <h3 style="color: white;">All Reviews</h3>
       <% } %> 
 
     <% for(review of campgrounds.reviews){ %>
-      <div class="card my-3" style="border-radius: 10px;">
-      <div class="card-body" style="border-radius: 10px;"> <b><%= review.rating %>&#9733 </b>   </div>
-      <p class="mx-3" style="border-radius: 10px;"><%= review.body %></p>
+      <div class="my-3" style="border:1px solid white; border-radius: 10px;">
+      <div class="card-body" style="color: white;"> <b><%= review.rating %>&#9733 </b>   </div>
+      <p class="mx-3 my-1" style="border-radius: 10px; color: white;"><%= review.body %></p>
+      <p class="mx-3 text-muted" style="color: wheat;">By - <%= review.author.username %> </p>
+      <% if(review.author.equals(user)) {%> 
       <form action="/campgrounds/<%=campgrounds._id%>/review/<%=review._id%>?_method=DELETE" method="POST">
-          <button class="btn btn-outline-danger btn-sm mx-1 mb-1"> Delete</button>
+          <button class="btn btn-outline-danger btn-sm mx-3 mb-3"> Delete</button>
       </form>
+      <% } %> 
     </div>
       <% } %> 
     

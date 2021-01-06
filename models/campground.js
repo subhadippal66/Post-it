@@ -14,6 +14,10 @@ const campground = new schema({
     description : String,
     location : String,
     image : String,
+    author : {
+        type: schema.Types.ObjectId,
+        ref:'User'
+    },
     reviews : [
         {
             type : schema.Types.ObjectId,

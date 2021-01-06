@@ -1,0 +1,17 @@
+<% layout('/layout/boilerplate') %>
+
+<h1 style="color: rgb(187, 187, 187);">Username - <%= user.username %> </h1>
+<h2 style="color: rgb(187, 187, 187);">Email - <%= user.email %> </h2>
+<a class="btn btn-outline-success my-3" href="/campgrounds">Go Home</a>
+
+<h1 class="text-center" style="color: white;">Your Blog</h1>
+
+<% for(const camp of campgrounds){ %>
+    <div class="row my-3 d-flex p-1" style="border-radius: 5px; background-color:#26273b;">
+        <div class="col-5" style="color: white;"><%= camp.title %></div>
+        <div class="col-5" style="color: white;"><%= camp.location %></div>
+        <a href="/campgrounds/<%= camp._id %>" class="col-2 d-flex flex-row-reverse">Details</a>
+    </div>
+
+    
+<% } %> 
