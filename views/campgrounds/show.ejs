@@ -1,12 +1,35 @@
 <% layout('/layout/boilerplate') %>
-<link rel="stylesheet" href="/stars.css">
 
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css' rel='stylesheet' />
+
+<link rel="stylesheet" href="/stars.css">
 <div class="row">
 
-<div class="col-12 col-md-8">
+<div class="col-12 col-md-7">
 <div class="card mb-5" style="border-radius: 20px; background-color: #26273b;">
-  <img src="<%= campgrounds.image %> " style="border-radius: 20px;" class="card-img-top " alt="...">
+  
   <div class="card-body">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" >
+      <div class="carousel-inner" style="border-radius: 20px;">
+      <% campgrounds.image.forEach((img,i)=>{%> 
+        <div class="carousel-item <%= i===0 ? 'active' : '' %> ">
+          <img src="<%= img.thumbnail %> " class="d-block w-100" alt="...">
+        </div>
+      <% }) %> 
+      
+      </div>
+      <% if(campgrounds.image.length > 1) {%> 
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </a>
+      <% } %> 
+    </div>
     <h1 class="card-title" style="color: white;"><%= campgrounds.title %></h1>
     <h2 class="card-title" style="color: white;"><%= campgrounds.location %> </h2><br>
     <h4 class="card-title" style="color: white;">Rs - <%= campgrounds.price %>/- </h2>
@@ -17,6 +40,13 @@
       <h5 style="color: tan;"><%= campgrounds.author.username %></h5> 
       <h6 class="text-muted" style="color: tan;"><%= campgrounds.author.email %></h6>
     </span>
+    <ol>
+    <% if(campgrounds.image.length>0) {%>
+      
+      <% for(let img of campgrounds.image) {%> 
+        <li style="color: white;"><a target="_blank" href="<%= img.path %> ">Download Full Resolution image</a></li>
+      <% }} %> 
+    </ol> 
   </div> 
   <% if(user && user._id.equals(campgrounds.author._id)) {%> 
   <div class="card-body">
@@ -28,10 +58,15 @@
 <% } %> 
 
 </div>
-
 </div>
 
-<div class="col-md-4 col-12" >
+
+<div class="col-md-5 col-12" >
+
+
+  <div id='map' class="mb-3" style='border-radius: 20px; height: 300px;'></div>
+
+
 <div class="card mb-3" style="border-radius: 20px; background-color: #26273b;">
   <div class="card-body">
     <h2 class="card-title" style="color: white;">Leave a review</h2>
@@ -102,4 +137,8 @@
 </div>
 
 <script src="/formValidation.js"></script>
-
+<script>
+  const mapToken = '<%-process.env.MAPBOX_TOKEN %>';
+  const geo ='<%-JSON.stringify(campgrounds)%>';
+</script>
+<script src="/map.js"></script>

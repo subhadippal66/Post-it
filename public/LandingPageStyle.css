@@ -1,0 +1,190 @@
+html{
+    font-family: 'Poppins', sans-serif;
+    
+    margin: 0em;
+}
+*{
+    box-sizing: border-box;
+}
+*::selection{
+    background-color: #141526;;
+    color: white;
+}
+body{
+    background-color: #141526;;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 95vh;
+    
+}
+
+.bodyimg{
+    background-image: url("Home.jpg");
+    background-size: cover;
+    background-position: center center;
+    transform-origin: center;
+    border-radius: 30px;
+    /*for flexibility purpose*/
+    max-width: 64rem;
+    width: 100%;
+
+    height: 36rem;
+    padding: 1rem 5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+}
+
+#upper{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0.5rem 7rem 0rem 7rem;
+}
+
+#upper span a{
+    color: #105178;
+    font-weight: 800;
+    padding: .3rem 1rem;
+    text-decoration: none;
+    border-radius: 15px;
+}
+
+#upper #login a{
+    color: white;
+    background-color: #FF9F5C;
+    transition: all .02sec ease;
+    border: .1rem #FF9F5C solid;
+}
+#upper #login a:hover{
+    cursor: pointer;
+    color: #FF9F5C;
+    background-color: white;
+    border: .1rem #FF9F5C solid;
+    box-shadow: 0px 8px 20px -6px #FF9F5C;
+    transform: translateY(-.1rem);
+    
+    
+}
+
+#upper span a:hover{
+    cursor: pointer;
+    background-color: #105178;
+    color: white;
+    box-shadow: 0px 8px 20px -6px #105178;
+    transform: translateY(-.1rem);
+}
+
+#lower{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0rem;
+}
+
+#heading{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0rem 0rem 0rem 0rem;
+}
+#bold{
+    font-weight: 800;
+    font-size: 3rem;
+    color: #105178;
+    line-height: 2.5rem;
+    margin-top: .5rem;
+}
+#normal{
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: #42708a;
+    letter-spacing: .5rem;
+    margin-top: .5rem;
+}
+#intro{
+    color: #b8b8b8;
+    margin-top: 1rem;
+    text-align: center;
+}
+#lower div button{
+    border-style: none;
+    padding: .8rem 2rem;
+    margin: 1rem;
+    background-color: #4f9bb4;
+    color: white;
+    border-radius: 25rem;
+    font-weight: 800;
+    font-size: 1.5rem;
+    border: .1rem solid #4f9bb4;
+}
+#lower div button:hover{
+    cursor: pointer;
+    background-color: white;
+    color: #4f9bb4;
+    box-shadow: 0px 8px 20px -6px #4f9bb4;
+}
+#lower div button:active{
+    border: none;
+    outline: none;
+}
+#lower div button:focus{
+    outline: 0ch;
+}
+
+@media (max-width:450px){
+    #bold{
+        font-size: 2rem;
+        margin-top: 0rem;
+    }
+    #normal{
+        font-size: .8rem;
+        letter-spacing: .5rem;
+    }
+    #intro{
+        font-size: .5rem;
+    }
+    #lower div button{
+        padding: .5rem 1rem;
+        font-size: 1rem;
+        
+    }
+    #upper{
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 0%;
+    }
+    #upper span a{
+        font-size: .8rem;
+    }
+    #upper #login{
+        border: 0;
+        margin-top: .5rem;
+    }
+}
+
+@media (max-width:330px)
+{
+    #bold{
+        font-size: 1rem;
+        line-height: 1rem;
+    }
+    #normal{
+        font-size: .4rem;
+        letter-spacing: .4rem;       
+    }
+    #upper span a{
+        
+        font-size: .6rem;
+    }
+    #lower div button{
+        padding: .5rem 1rem;
+        font-size: .8rem;
+        margin: 0;
+        margin-top: 1rem;
+
+    }
+}

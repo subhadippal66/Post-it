@@ -4,9 +4,14 @@ const ExpressError = require('./utils/expressError');
 const Campground = require('./models/campground.js');
 const Review = require('./models/review.js');
 
+module.exports.pathMiddleware = (req,res,next) =>{
+    req.session.requestedUrl= req.header('Referer');
+    next();
+}
+
 module.exports.isLoggedIn = (req,res,next)=>{
     req.session.requestedUrl = req.originalUrl;
-    //console.log(req.session.requestedUrl);
+    //console.log(req.baseUrl);
     if(!req.isAuthenticated()){
         req.flash('error','You must Log-In first');
         return res.redirect('/login');

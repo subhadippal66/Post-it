@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV !== "production"){
+    require('dotenv').config();
+}
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -42,7 +46,7 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use((req,res,next)=>{
     res.locals.success = req.flash('success');
-    res.locals.deleted = req.flash('delete')
+    res.locals.deleted = req.flash('delete');
     res.locals.reviewAdded = req.flash('reviewAdded');
     res.locals.reviewDeleted = req.flash('reviewDeleted');
     res.locals.error = req.flash('error');

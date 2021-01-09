@@ -1,0 +1,38 @@
+
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
+<div id="map" class="mb-3" style="width: 100%; height: 200px;"></div>
+
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark " style="background-color: #141526;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Campground</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav">
+            <a class="nav-link" href="/" style="color: white;">Home</a>
+            <a class="nav-link" href="/campgrounds" style="color: white;">Campground</a>
+            <a class="nav-link" href="/campgrounds/new" style="color: white;">New Campground</a>
+        </div>
+        <div class="navbar-nav" style="margin-left: auto;">
+          <% if(user){ %>
+            <a class="nav-link disabled m-1" style="color: wheat;"> Welcome <%=user.username%> </a>
+            <a class="btn btn-outline-info m-1" href="/userProfile">Profile</a>
+            <a class="btn btn-outline-danger m-1" href="/logout">Log-Out</a>
+            <% } %> 
+          <%if(!user){ %> 
+          <a class="btn btn-outline-info m-1" href="/login">Login</a>
+          <a class="btn btn-info m-1" href="/register">Register</a>
+          <% } %> 
+          
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    const campground = {features:<%-JSON.stringify(campgrounds)%>};
+  </script>
+  <script src="/clusterMap.js"></script>

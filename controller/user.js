@@ -14,7 +14,9 @@ module.exports.registerUser = async(req,res,next)=>{
             if(err) {return next(err)}
             req.flash('success', 'successfully registered');
             //console.log(registeredUser);
-            res.redirect('/campgrounds');
+            const reqUrl = req.session.requestedUrl || '/';
+            res.redirect(reqUrl);
+            delete req.session.requestedUrl;
         })
     }
     catch(e){
@@ -43,5 +45,8 @@ module.exports.loginUser =
 module.exports.logout = (req, res)=> {
     req.logout();
     req.flash('success', 'Logged-Out, Maybe Visit Again');
-    res.redirect('/campgrounds');
+    const reqUrl = req.session.requestedUrl || '/';
+        res.redirect(reqUrl);
+        delete req.session.requestedUrl;
+    
 }

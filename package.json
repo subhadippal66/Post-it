@@ -17,8 +17,11 @@
   },
   "homepage": "https://github.com/subhadippal66/Post-it#readme",
   "dependencies": {
+    "@mapbox/mapbox-sdk": "^0.11.0",
     "body-parser": "^1.19.0",
+    "cloudinary": "^1.23.0",
     "connect-flash": "^0.1.1",
+    "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
     "ejs-mate": "^3.0.0",
     "express": "^4.17.1",
@@ -26,6 +29,8 @@
     "joi": "^17.3.0",
     "method-override": "^3.0.0",
     "mongoose": "^5.11.8",
+    "multer": "^1.4.2",
+    "multer-storage-cloudinary": "^4.0.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1"

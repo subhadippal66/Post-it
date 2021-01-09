@@ -1,11 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="LandingPageStyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;800&display=swap"
+        rel="stylesheet">
+
+    <title>Home</title>
+    <link rel = "icon" href = "images/bag.png" 
+            type = "image/x-icon"> 
 </head>
+
 <body>
-    hello
+    
+    <div class="bodyimg">
+        
+        <% if(!user) {%> 
+        <div id="upper">
+            <span><a href="/register">Register</a> </span>
+            <span id="login"> <a href="/login">Login</a> </span>
+        </div>
+        <% }else{ %>
+            <div id="upper">
+                <span>Welcome <%= user.username %> </span>
+                <span><a href="/userProfile">My Profile</a> </span>
+                <span id="login"> <a href="/logout">Log-out</a> </span>
+            </div> 
+            <% } %> 
+        <div id="lower">
+            <div id="heading">
+                <section id="bold">yelpCamp</section>
+                <section id="normal">Landing Page</section>
+            </div>
+            <div id="intro">explore campgrounds from here.</div>
+            <div>
+                <form action="/campgrounds" method="GET">
+                    <button>Camps></button>
+                </form>
+            </div>
+        </div>
+        <%- include('./partials/flash') %>
+
+    </div>
+    <script src="/js/bootstrap.js"></script>
 </body>
+
 </html>

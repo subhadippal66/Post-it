@@ -1,5 +1,5 @@
 <% layout('/layout/boilerplate') %>
-    <form action="/campgrounds" method="POST" class="needs-validation" novalidate>
+    <form action="/campgrounds" method="POST" class="needs-validation" enctype="multipart/form-data" novalidate>
         <h1 class="text-center mb-2" style="color: white;">New Campground</h1>
         <div class="col-md-6 mx-auto">
             <div class="mb-3">
@@ -33,22 +33,18 @@
                     Please enter a price.
                   </div>
             </div>
-            <div class="mb-3">
-                <label class="form-label" for="url" style="color: white;">Image URL</label>
-                <input class="form-control" type="text" id="url" name="campground[image]" required>
-                <div class="valid-feedback">
-                    Looks good!
-                  </div>
-                  <div class="invalid-feedback">
-                    Please enter a image URL.
-                  </div>
+            <label class="form-label"  style="color: white;">Upload Images (Optional)</label>
+            <div class="input-group mb-3">
+              <input type="file" id="image_" name="image" class="form-control" id="inputGroupFile02" multiple>
+              <label class="input-group-text" for="inputGroupFile02">Upload</label>
             </div>
+            <div class="warning" style="color: red; display: none;">You cannot upload more than 2 images</div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label" style="color: white;">Description</label>
                 <textarea name="campground[description]" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
               </div>
-
-            <button class="btn btn-success mb-3">Add Campground</button>
+            
+            <button id="btn_submit" class="btn btn-success mb-3">Add Campground</button>
         </div>        
     </form>
 
