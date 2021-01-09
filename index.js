@@ -13,6 +13,7 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const localStrategy = require('passport-local');
 const User = require('./models/user');
+const MongoStore = require('connect-mongo')(session);
 
 const ExpressError = require('./utils/expressError');
 
@@ -24,8 +25,37 @@ app.use(bodyParser.urlencoded({
   }))
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
+
+//mongoose connections
+//'mongodb://localhost/tourPlace'
+//process.env.DB_URL
+const dbUrl = process.env.DB_URL || 'mongodb://localhost/tourPlace';
+mongoose.connect(dbUrl, {
+    useNewUrlParser: true,
+    useCreateIndex : true,
+    useUnifiedTopology: true})
+    .then(()=>{
+        console.log('connected to db');
+    })
+    .catch(err =>{
+        console.log('Failed to connect')
+        console.log(err);
+    })
+
+const secret= process.env.SESSION_ID || 'secretfile';
+const store = new MongoStore({
+    url : dbUrl,
+    secret,
+    touchAfter: 24 * 3600
+})
+
+store.on('e', function (e) {
+    console.log('session store error');
+})
+
 const sessionConfig = {
-    secret: 'secretfile',
+    store,
+    secret,
     httpOnly: true,
     cookie: {
         expires : Date.now() + (1000*60*60*24*7),
@@ -55,18 +85,7 @@ app.use((req,res,next)=>{
     next();
 })
 
-//mongoose connections
-mongoose.connect('mongodb://localhost/tourPlace', {
-    useNewUrlParser: true,
-    useCreateIndex : true,
-    useUnifiedTopology: true})
-    .then(()=>{
-        console.log('connected to db');
-    })
-    .catch(err =>{
-        console.log('Failed to connect')
-        console.log(err);
-    })
+
 
 mongoose.set('useFindAndModify', false);
 

@@ -1,28 +1,38 @@
 <% layout('/layout/boilerplate') %>
-<h1 class="text-center" style="color: white;" >Login</h1>
-<div class="col-md-6 mx-auto">
-<form action="/login" method="post" class="needs-validation" novalidate>
-    <div class="my-3">
-        <label class="form-label" for="username" style="color: white;">Username</label>
-        <input class="form-control" type="text" id="username" name="username" required>
-        <div class="valid-feedback">
-            Looks good!
-          </div>
-          <div class="invalid-feedback">
-            Please enter a username
-          </div>
+  <div class="container d-flex justify-content-center align-item-center">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card shadow" style=" border-radius: 15px; background-color:#26273b;">
+          <img src="/images/login.jpg" alt="" style="border-radius: 15px;" class="card-img-top">
+          <h1 class="text-center mt-3" style="color: white;">Login</h1>
+
+          <form action="/login" method="post" class="needs-validation" novalidate>
+            <div class="m-3">
+              <label class="form-label" for="username" style="color: white;">Username</label>
+              <input class="form-control" type="text" id="username" name="username" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Please enter a username
+              </div>
+            </div>
+            <div class="m-3">
+              <label class="form-label" for="password" style="color: white;">Password</label>
+              <input class="form-control" type="password" id="password" name="password" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Please enter a password
+              </div>
+            </div>
+            <button class="btn btn-info m-3">Login</button>
+          </form>
+        </div>
+      </div>
     </div>
-    <div class="my-3">
-        <label class="form-label" for="password" style="color: white;">Password</label>
-        <input class="form-control" type="password" id="password" name="password" required>
-        <div class="valid-feedback">
-            Looks good!
-          </div>
-          <div class="invalid-feedback">
-            Please enter a password
-          </div>
-    </div>
-    <button class="btn btn-info my-3">Login</button>
-</form>
-</div>
-<script src="/formValidation.js"></script>
+  </div>
+
+
+  <script src="/formValidation.js"></script>

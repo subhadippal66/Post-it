@@ -19,3 +19,4 @@ var marker = new mapboxgl.Marker()
     )
     .addTo(map);
 
+    map.addControl(new mapboxgl.NavigationControl());

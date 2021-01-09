@@ -1,0 +1,16 @@
+.btn_style{
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: all .3s ease;
+    padding: 0 10px;
+    font-size: large;
+}
+
+.btn_style:hover{
+    color: #04aed9;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    text-decoration-thickness: 5px;
+}
