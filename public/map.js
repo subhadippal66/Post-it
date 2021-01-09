@@ -1,4 +1,4 @@
-const geoData=  JSON.parse(geo).geometry.coordinates;
+const geoData=  JSON.parse(geo).coordinates;
 //console.log(geoData);
 const camp = JSON.parse(geo).title;
 const loc = JSON.parse(geo).location;

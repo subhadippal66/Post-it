@@ -10,6 +10,7 @@
 <div class="card mb-5" style="border-radius: 20px; background-color: #26273b;">
   
   <div class="card-body">
+    <% if(campgrounds.image.length !==0) {%> 
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" >
       <div class="carousel-inner" style="border-radius: 20px;">
       <% campgrounds.image.forEach((img,i)=>{%> 
@@ -30,9 +31,15 @@
       </a>
       <% } %> 
     </div>
+    <% }else{ %>
+      <div class="carousel-inner" style="border-radius: 20px;">
+        <div class="carousel-item active">
+        <img src="/images/noimage.jpg"  class="d-block w-100" alt="" srcset=""> 
+      </div>
+    </div>
+      <% } %> 
     <h1 class="card-title" style="color: white;"><%= campgrounds.title %></h1>
     <h2 class="card-title" style="color: white;"><%= campgrounds.location %> </h2><br>
-    <h4 class="card-title" style="color: white;">Rs - <%= campgrounds.price %>/- </h2>
     <p class="card-text" style="color: white;"><%= campgrounds.description %> </p>
     
     <span> 
@@ -139,6 +146,6 @@
 <script src="/formValidation.js"></script>
 <script>
   const mapToken = '<%-process.env.MAPBOX_TOKEN %>';
-  const geo ='<%-JSON.stringify(campgrounds)%>';
+  const geo ='<%-JSON.stringify(campgrounds.geometry)%>';
 </script>
 <script src="/map.js"></script>

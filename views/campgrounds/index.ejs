@@ -7,15 +7,14 @@
             <div class="row">
                 <div class="col-md-4 ">
                     <% if(camp.image.length) {%> 
-                        <img class="card-img" style="border-radius: 15px; max-height: 13rem; object-fit: cover;" src='<%= camp.image[0].thumbnail %> ' alt="">
+                        <img class="card-img" style="border-radius: 15px; max-height: 10rem; object-fit: cover;" src='<%= camp.image[0].thumbnail %> ' alt="">
                     <% }else{ %> 
-                    <img class="card-img" style="border-radius: 15px; max-height: 13rem; object-fit: cover;" src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png' alt="">
+                    <img class="card-img" style="border-radius: 15px; max-height: 10rem; object-fit: cover;" src='/images/noimage.jpg' alt="">
                     <% } %> 
                 </div>
                 <div class="col-md-8">
-                    <h3 class="p-3" style="color: white;"><%= camp.title %> </h2>
-                    <h4 class="px-3" style="color: white;"><%= camp.location %> </h3>
-                    <h5 class="px-3" style="color: white;">RS - <%= camp.price %> /-</h5>
+                    <h3 class="px-3 py-1" style="color: white;"><%= camp.title %> </h2>
+                    <h4 class="px-3 text-muted" style="color: white;"><%= camp.location %> </h3>
                     
                     <a class="btn btn-info mx-3 mb-3" href="/campgrounds/<%= camp._id %> ">Details</a>
                 </div>
@@ -23,3 +22,8 @@
         </div>
     <% } %>  
 
+<script>
+    const campground = {features:<%-JSON.stringify(campgrounds)%>};
+</script>
+
+<script src="/clusterMap.js"></script>

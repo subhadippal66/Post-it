@@ -22,10 +22,7 @@ const campground = new schema({
         type : String,
         required :true
     },
-    price : {
-        type : Number,
-        required : true
-    },
+
     geometry:{
         type: {
             type: String, 
@@ -51,9 +48,10 @@ const campground = new schema({
         }
     ]
 }, opts);
-campground.virtual('properties.popup').get(()=>{
-    return `<a>${this.title}</a>`;
+campground.virtual('properties.popup').get(function(){
+    return [this._id, this.title, this.location];
 })
+
 
 campground.post('findOneAndDelete', async(doc)=>{
     //console.log(doc.reviews);

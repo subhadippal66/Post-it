@@ -103,14 +103,7 @@ map.on('load', function () {
     // description HTML from its properties.
     map.on('click', 'unclustered-point', function (e) {
         var coordinates = e.features[0].geometry.coordinates.slice();
-        var mag = e.features[0].properties.mag;
-        var tsunami;
-        //console.log(e.features[0].location)
-        if (e.features[0].properties.tsunami === 1) {
-            tsunami = 'yes';
-        } else {
-            tsunami = 'no';
-        }
+        
 
         // Ensure that if the map is zoomed out such that
         // multiple copies of the feature are visible, the
@@ -119,11 +112,14 @@ map.on('load', function () {
             coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
         }
 
-        const text = e.features[0].properties.popup;
+        const text = JSON.parse(e.features[0].properties.popup);
+        const id = text[0];
+        const html = `<a href=/campgrounds/${id}><b>${text[1]}</b></a><p>${text[2]}</p>`
+        //console.log(text)
         new mapboxgl.Popup()
             .setLngLat(coordinates)
             .setHTML(
-                text
+                html
             )
             .addTo(map);
     });
